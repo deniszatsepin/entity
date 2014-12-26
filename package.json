@@ -1,0 +1,26 @@
+{
+  "name": "rotor-entity",
+  "version": "0.0.1",
+  "description": "Entity for Rotor engine.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "entity",
+    "component",
+    "gameengine"
+  ],
+  "author": "Denis Zatsepin <denis@zatsepin.spb.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter2": "^0.4.14",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "gulp": "^3.8.10",
+    "gulp-mocha": "^2.0.0",
+    "mocha": "^2.1.0"
+  }
+}
