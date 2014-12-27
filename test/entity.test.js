@@ -43,6 +43,14 @@ describe('Entity tests:', function() {
       expect(func).to.throw(Error);
     });
 
+    it('should thorow error on adding child that already added to another entity', function() {
+      var child = new Entity();
+      var anotherParent = new Entity();
+      anotherParent.addChild(child);
+      var func = entity.addChild.bind(entity, child);
+      expect(func).to.throw(Error);
+    });
+
     it('should remove entity if it exists', function() {
       var child = new Entity();
       entity.addChild(child);
@@ -50,6 +58,12 @@ describe('Entity tests:', function() {
       expect(entity._children.indexOf(child)).to.be.below(0);
     });
 
+    it('should set _parent attribute to null, after child has been removed', function() {
+      var child = new Entity();
+      entity.addChild(child);
+      entity.removeChild(child);
+      expect(child.hasParent()).to.be.equal(false);
+    });
     //Component tests
     it('should have componens array', function() {
       ('_components' in entity).should.be.equal(true);
