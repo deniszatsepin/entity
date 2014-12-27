@@ -21,8 +21,8 @@ describe('Entity tests:', function() {
 
     //Children tests
     it('should have children array', function() {
-      ('children' in entity).should.be.equal(true);
-      (entity.children instanceof Array).should.be.equal(true);
+      ('_children' in entity).should.be.equal(true);
+      (entity._children instanceof Array).should.be.equal(true);
     });
 
     it('couldn\'t add itself as a child', function() {
@@ -33,7 +33,7 @@ describe('Entity tests:', function() {
     it('should add child', function() {
       var child = new Entity();
       entity.addChild(child);
-      entity.children.length.should.be.equal(1);
+      entity._children.length.should.be.equal(1);
     });
 
     it('couldn\'t add child twice', function() {
@@ -47,13 +47,13 @@ describe('Entity tests:', function() {
       var child = new Entity();
       entity.addChild(child);
       entity.removeChild(child);
-      expect(entity.children.indexOf(child)).to.be.below(0);
+      expect(entity._children.indexOf(child)).to.be.below(0);
     });
 
     //Component tests
     it('should have componens array', function() {
-      ('components' in entity).should.be.equal(true);
-      (entity.components instanceof Array).should.be.equal(true);
+      ('_components' in entity).should.be.equal(true);
+      (entity._components instanceof Array).should.be.equal(true);
     });
   });
 });
