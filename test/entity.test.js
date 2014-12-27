@@ -1,8 +1,12 @@
-var chai    = require('chai');
-var should  = chai.should();
-var expect  = chai.expect;
+var chai      = require('chai');
+var sinon     = require('sinon');
+var sinonChai = require('sinon-chai');
+var should    = chai.should();
+var expect    = chai.expect;
 var EventEmitter2 = require('eventemitter2').EventEmitter2;
-var Entity  = require('../lib/entity');
+var Entity    = require('../lib/entity');
+
+chai.use(sinonChai);
 
 describe('Entity tests:', function() {
   describe('Entity', function() {
@@ -64,6 +68,40 @@ describe('Entity tests:', function() {
       entity.removeChild(child);
       expect(child.hasParent()).to.be.equal(false);
     });
+
+    it('should remove all children', function() {
+      for (var i = 0; i < 5; i += 1) {
+        (function() {
+          var child = new Entity();
+          entity.addChild(child);
+        })();
+      }
+      entity._children.length.should.be.above(0);
+      entity.removeChildren();
+      entity._children.length.should.be.equal(0);
+    });
+
+    it('should update all children', function() {
+      sinon.spy(Entity.prototype, 'update');
+      entity.removeChildren();
+      for (var i = 0; i < 10; i += 1) {
+        (function() {
+          var child = new Entity();
+          entity.addChild(child);
+          for (var i = 0; i < 2; i += 1) {
+            (function() {
+              var subChild = new Entity();
+              child.addChild(subChild);
+            })();
+          }
+        })();
+      }
+      entity.update();
+      Entity.prototype.update.should.have.callCount(10 + 10 * 2 + 1);
+      entity.removeChildren();
+      Entity.prototype.update.restore();
+    });
+
     //Component tests
     it('should have componens array', function() {
       ('_components' in entity).should.be.equal(true);
