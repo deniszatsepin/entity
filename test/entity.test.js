@@ -43,6 +43,13 @@ describe('Entity tests:', function() {
       expect(func).to.throw(Error);
     });
 
+    it('should remove entity if it exists', function() {
+      var child = new Entity();
+      entity.addChild(child);
+      entity.removeChild(child);
+      expect(entity.children.indexOf(child)).to.be.below(0);
+    });
+
     //Component tests
     it('should have componens array', function() {
       ('components' in entity).should.be.equal(true);
