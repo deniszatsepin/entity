@@ -13,6 +13,10 @@
   ],
   "author": "Denis Zatsepin <denis@zatsepin.spb.ru>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deniszatsepin/rotor-entity"
+  },
   "dependencies": {
     "eventemitter2": "^0.4.14",
     "lodash": "^2.4.1"
