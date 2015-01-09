@@ -1,6 +1,6 @@
 {
   "name": "rotor-entity",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Entity for Rotor engine.",
   "main": "index.js",
   "scripts": {
